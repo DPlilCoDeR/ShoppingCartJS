@@ -24,6 +24,7 @@ function leeDatosCurso(curso) {
         id: curso.querySelector('a').getAttribute('data-id')
     }
     creaFilaDataCursoCarrito(dataCurso);
+    guardaCursoLocalStorage(dataCurso);
 }
 
 function creaFilaDataCursoCarrito(curso) {
@@ -39,4 +40,9 @@ function creaFilaDataCursoCarrito(curso) {
         </td>
     `;
     listaCarrito.append(filaCurso);
+}
+
+function guardaCursoLocalStorage(curso) {
+    const myStorage = localStorage;
+    myStorage.setItem(curso.nombre, JSON.stringify(curso));
 }

@@ -6,6 +6,7 @@ ejecutaEventListener();
 
 function ejecutaEventListener() {
     listaCursos.addEventListener('click', seleccionarCurso);
+    document.addEventListener('DOMContentLoaded', obtenCursosLocalStorage);
 }
 
 function seleccionarCurso(event) {
@@ -45,4 +46,13 @@ function creaFilaDataCursoCarrito(curso) {
 function guardaCursoLocalStorage(curso) {
     const myStorage = localStorage;
     myStorage.setItem(curso.nombre, JSON.stringify(curso));
+    
+}
+
+function obtenCursosLocalStorage() {
+    for (let index = 0; index < localStorage.length; index++) {
+        let curso = localStorage.getItem(localStorage.key(index))
+        let objCurso = JSON.parse(curso);
+        creaFilaDataCursoCarrito(objCurso);
+    }
 }

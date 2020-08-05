@@ -1,12 +1,14 @@
 const listaCursos = document.querySelector('#lista-cursos');
 const carrito = document.querySelector('#carrito')
 const listaCarrito = document.querySelector('#lista-carrito tbody')
+const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 
 ejecutaEventListener();
 
 function ejecutaEventListener() {
     listaCursos.addEventListener('click', seleccionarCurso);
     carrito.addEventListener('click', borrarCursoCarrito);
+    vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
     document.addEventListener('DOMContentLoaded', obtenCursosLocalStorage);
 }
 
@@ -59,6 +61,7 @@ function obtenCursosLocalStorage() {
 }
 
 function borrarCursoCarrito(event){
+    event.preventDefault();
     if (event.target.classList.contains('borrar-curso')) {
         const curso = event.target.parentElement.parentElement;
         borrarCursoLocalStorage(curso);
@@ -69,4 +72,10 @@ function borrarCursoCarrito(event){
 function borrarCursoLocalStorage(curso) {
     const idCursoBorrar = curso.querySelector('td a').getAttribute('data-id');
     localStorage.removeItem(idCursoBorrar);
+}
+
+function vaciarCarrito(event) {
+    while (listaCarrito.firstChild) {
+        listaCarrito.removeChild(listaCarrito.firstChild);
+    }
 }

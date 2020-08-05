@@ -46,7 +46,7 @@ function creaFilaDataCursoCarrito(curso) {
 
 function guardaCursoLocalStorage(curso) {
     const myStorage = localStorage;
-    myStorage.setItem(curso.nombre, JSON.stringify(curso));
+    myStorage.setItem(curso.id, JSON.stringify(curso));
     
 }
 
@@ -62,5 +62,11 @@ function borrarCursoCarrito(event){
     if (event.target.classList.contains('borrar-curso')) {
         const curso = event.target.parentElement.parentElement;
         curso.remove();
+        borrarCursoLocalStorage(curso);
     }
+}
+
+function borrarCursoLocalStorage(curso) {
+    const idCursoBorrar = curso.querySelector('td a').getAttribute('data-id');
+    localStorage.removeItem(idCursoBorrar);
 }

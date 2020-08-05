@@ -61,8 +61,8 @@ function obtenCursosLocalStorage() {
 function borrarCursoCarrito(event){
     if (event.target.classList.contains('borrar-curso')) {
         const curso = event.target.parentElement.parentElement;
-        curso.remove();
         borrarCursoLocalStorage(curso);
+        curso.remove();
     }
 }
 

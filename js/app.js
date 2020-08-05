@@ -49,7 +49,6 @@ function creaFilaDataCursoCarrito(curso) {
 function guardaCursoLocalStorage(curso) {
     const myStorage = localStorage;
     myStorage.setItem(curso.id, JSON.stringify(curso));
-    
 }
 
 function obtenCursosLocalStorage() {
@@ -78,4 +77,7 @@ function vaciarCarrito(event) {
     while (listaCarrito.firstChild) {
         listaCarrito.removeChild(listaCarrito.firstChild);
     }
+    (function(){
+        localStorage.clear()
+    })();
 }
